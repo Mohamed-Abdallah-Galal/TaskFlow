@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TaskFlow.DAL.Enums.Attachment;
 using TaskFlow.DAL.Enums.Task;
 
 namespace TaskFlow.DAL.Entites

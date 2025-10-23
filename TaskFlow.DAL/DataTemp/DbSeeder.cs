@@ -1,5 +1,6 @@
 ﻿using TaskFlow.DAL.DataBase;
 using TaskFlow.DAL.Entites;
+using TaskFlow.DAL.Enums.Attachment;
 using TaskFlow.DAL.Enums.Task;
 using TaskFlow.DAL.Enums.User;
 

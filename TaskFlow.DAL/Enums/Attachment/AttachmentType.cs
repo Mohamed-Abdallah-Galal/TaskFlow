@@ -1,4 +1,4 @@
-﻿namespace TaskFlow.DAL.Enums.Task
+﻿namespace TaskFlow.DAL.Enums.Attachment
 {
     public enum AttachmentType
     {

@@ -1,6 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TaskFlow.BLL.Mapper.AppUserMapping;
+using TaskFlow.BLL.Mapper.AttachmentMapping;
+using TaskFlow.BLL.Mapper.CommentMapping;
+using TaskFlow.BLL.Mapper.TaskHistoryMapping;
+using TaskFlow.BLL.Mapper.TaskMapping;
+using TaskFlow.BLL.Services.Abstraction;
+using TaskFlow.BLL.Services.Implementation;
 using TaskFlow.DAL.DataBase;
 using TaskFlow.DAL.DataTemp;
+using TaskFlow.DAL.Repo.Abstraction;
+using TaskFlow.DAL.Repo.Implementation;
 
 namespace TaskFlow.PLL
 {
@@ -19,6 +28,30 @@ namespace TaskFlow.PLL
                 options.UseSqlServer("Server=.;Database=Motorak;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"));
 
 
+            // ✅ AUTOMAPPER REGISTRATION - Manual profile registration
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<AppUserProfile>();
+                cfg.AddProfile<TaskItemProfile>();
+                cfg.AddProfile<CommentProfile>();
+                cfg.AddProfile<AttachmentProfile>();
+                cfg.AddProfile<TaskHistoryProfile>();
+            });
+
+
+            // ✅ REPOSITORY REGISTRATION - Data Access Layer
+            builder.Services.AddScoped<IAppUserRepo, AppUserRepo>();
+            builder.Services.AddScoped<ITaskItemRepo, TaskItemRepo>();
+            builder.Services.AddScoped<ICommentRepo, CommentRepo>();
+            builder.Services.AddScoped<IAttachmentRepo, AttachmentRepo>();
+            builder.Services.AddScoped<ITaskHistoryRepo, TaskHistoryRepo>();
+
+            // ✅ SERVICE REGISTRATION - Business Logic Layer
+            builder.Services.AddScoped<IAppUserService, AppUserService>();
+            builder.Services.AddScoped<ITaskItemService, TaskItemService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
+            builder.Services.AddScoped<ITaskHistoryService, TaskHistoryService>();
 
             var app = builder.Build();
 
