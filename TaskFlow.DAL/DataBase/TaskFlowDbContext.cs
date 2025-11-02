@@ -8,7 +8,7 @@ namespace TaskFlow.DAL.DataBase
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=TaskFlow;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

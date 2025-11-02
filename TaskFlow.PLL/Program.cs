@@ -24,8 +24,14 @@ namespace TaskFlow.PLL
 
 
             // ✅ ADD YOUR DBCONTEXT TO DEPENDENCY INJECTION
+            //builder.Services.AddDbContext<TaskFlowDbContext>(options =>
+            //    options.UseSqlServer("Server=.;Database=TaskFlow;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"));
+
+
+            // --- AFTER (Reads from appsettings.json) ---
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<TaskFlowDbContext>(options =>
-                options.UseSqlServer("Server=.;Database=Motorak;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true"));
+                options.UseSqlServer(connectionString));
 
 
             // ✅ AUTOMAPPER REGISTRATION - Manual profile registration
